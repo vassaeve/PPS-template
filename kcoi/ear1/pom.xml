@@ -84,6 +84,7 @@
                             <groupId>com.mycompany</groupId>
                             <artifactId>web1</artifactId>
                             <bundleDir>webModules</bundleDir>
+                            <moduleId>web1Id</moduleId>
                             <contextRoot>/_web1_</contextRoot>
                         </webModule>
 
