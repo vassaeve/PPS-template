@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>kcoi</artifactId>
+        <groupId>com.mycompany</groupId>
+        <version>1.0</version>
+    </parent>
+
+    <groupId>com.mycompany</groupId>
+    <artifactId>ear1</artifactId>
+    <version>1.0</version>
+    <packaging>ear</packaging>
+
+    <name>ear1</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.mycompany</groupId>
+            <artifactId>jar2</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.mycompany</groupId>
+            <artifactId>ejb1</artifactId>
+            <version>1.0</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>com.mycompany</groupId>
+            <artifactId>web1</artifactId>
+            <version>1.0</version>
+            <type>war</type>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <sourceDirectory>./application</sourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>2.10.1</version>
+                <configuration>
+                    <version>6</version>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+
+                    <applicationName>MyEar1</applicationName>
+                    <displayName>My ear test project</displayName>
+                    <generateApplicationXml>true</generateApplicationXml>
+                    <!--<applicationXml>target/application.xml</applicationXml>-->
+
+                    <!-- <packagingIncludes>META-INF/**,**/acme-*.jar,**/acme-*.war</packagingIncludes> -->
+                    <modules>
+                        <jarModule>
+                            <groupId>com.mycompany</groupId>
+                            <artifactId>jar2</artifactId>
+                            <bundleDir>APP-INF/lib</bundleDir>
+                        </jarModule>
+
+                        <ejbModule>
+                            <groupId>com.mycompany</groupId>
+                            <artifactId>ejb1</artifactId>
+                            <bundleDir>ejbModules</bundleDir>
+                            <moduleId>ejb1</moduleId>
+                        </ejbModule>
+
+                        <webModule>
+                            <groupId>com.mycompany</groupId>
+                            <artifactId>web1</artifactId>
+                            <bundleDir>webModules</bundleDir>
+                            <contextRoot>/_web1_</contextRoot>
+                        </webModule>
+
+                    </modules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
